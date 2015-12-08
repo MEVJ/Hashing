@@ -13,6 +13,7 @@
         $(document).ready(function() {
             $('#generate-hash').click( function() {
               $("#display ul").empty();
+              $("#myTable").empty();
                 var lines = $('#message').val().split('\n');
                 for(var i = 0;i < lines.length;i++){
                   var t = new Date();
@@ -22,7 +23,8 @@
                   var hash = shaObj.getHash("HEX");
                   $('#hash-time').html(((new Date() - t))+'ms');
                   //$('#hash').val(hash);
-                  $("#display ul").append('<li><h4>'+ hash +'</h4></li>');
+                  $("#display ul").append('<li>'+ hash +'</li>');
+                  $("#myTable").append('<tr><td>'+lines[i]+'</td><td>'+hash+'</td></tr>');
                 }
             });
         });
@@ -52,7 +54,17 @@
           </div>
           <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <h2>Hashed Values</h2>
+              <h2>Key & Hashed Values</h2>
+                <div class="table-responsive">
+                  <table id="myTable" class="table table-bordered">
+
+                  </table>
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h2>Hash Values</h2>
               <div id="display">
                 <ul>
                 </ul>
@@ -60,6 +72,8 @@
             </div>
           </div>
         </div>
+
+      </div>
     </div>
   </div>
 </body>
